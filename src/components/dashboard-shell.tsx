@@ -9,7 +9,7 @@ import { Logo } from "./logo";
 const NAV = [
   { key: "overview", label: "📊 ภาพรวม", href: null }, // TODO: ยังไม่ทำ
   { key: "bank-accounts", label: "🏦 บัญชีธนาคาร", href: "/dashboard/bank-accounts" },
-  { key: "api-keys", label: "🔑 API Keys", href: null },
+  { key: "api-keys", label: "🔑 API Keys", href: "/dashboard/api-keys" },
   { key: "topup", label: "💳 เติมเครดิต", href: null },
   { key: "verifications", label: "🧾 ประวัติการตรวจ", href: null },
   { key: "webhooks", label: "🔔 Webhooks", href: null },

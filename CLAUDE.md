@@ -72,7 +72,9 @@ Base URL: env `NEXT_PUBLIC_API_URL` (dev = http://localhost:3000)
 - ✅ `/dashboard/bank-accounts`: เพิ่ม/ลบ/ดูบัญชีธนาคารของร้าน — ใช้ `DashboardShell`
   (sidebar ตาม mockup, เมนูที่ยังไม่ทำติด "เร็วๆ นี้") · flow: สร้างร้าน/เลือกร้าน → เข้าหน้านี้ทันที ·
   ทดสอบ API จริงแล้วรวม cross-tenant 403 · รายชื่อธนาคาร+รหัส BOT อยู่ `src/lib/banks.ts`
-- ⏳ คิวถัดไป: API keys → ภาพรวม/ประวัติตรวจ/เติมเครดิต/webhooks ตาม mockup ·
+- ✅ `/dashboard/api-keys`: สร้าง (live/test) + banner แสดง key เต็มครั้งเดียว+คัดลอก + rotate + เพิกถอน
+  — ทดสอบ endpoints จริงครบ (backend fix: rotate ตอบ envelope เดียวกับ create แล้ว)
+- ⏳ คิวถัดไป: ภาพรวม/ประวัติตรวจ/เติมเครดิต/webhooks ตาม mockup ·
   หน้า ToS/PDPA (บังคับก่อน launch) · ลิงก์ "เอกสาร API" ยังชี้ #
 
 ## 7. Conventions
