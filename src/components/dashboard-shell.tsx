@@ -41,10 +41,11 @@ export function DashboardShell({ active, children }: { active: string; children:
 
   return (
     <div className="grid min-h-screen md:grid-cols-[216px_1fr]">
-      <aside className="flex flex-row flex-wrap items-center gap-1 bg-navy px-3 py-3 text-[#B9C7E2] md:flex-col md:items-stretch md:gap-0 md:px-0 md:py-5">
+      {/* แบบ A (เจ้าของเลือก 12 ก.ค. 2026): sidebar ขาว + เส้นคั่น อ่านง่ายกว่าพื้นเข้ม */}
+      <aside className="flex flex-row flex-wrap items-center gap-1 border-b border-line bg-white px-3 py-3 md:flex-col md:items-stretch md:gap-0 md:border-b-0 md:border-r md:px-0 md:py-5">
         {/* โลโก้ใน dashboard พากลับหน้ารายการร้าน ไม่ใช่ออกไปหน้าเว็บ */}
         <Link href="/dashboard" className="px-3 pb-0 md:px-6 md:pb-4">
-          <Logo size={24} onDark />
+          <Logo size={24} />
         </Link>
         {NAV.map((item) => (
           <Link
@@ -52,18 +53,18 @@ export function DashboardShell({ active, children }: { active: string; children:
             href={item.href}
             className={`rounded-md px-3 py-2 text-sm md:rounded-none md:border-l-[3px] md:px-6 ${
               active === item.key
-                ? "bg-white/10 font-bold text-white md:border-sky"
-                : "hover:text-white md:border-transparent"
+                ? "bg-blue/10 font-bold text-blue md:border-blue"
+                : "text-muted hover:bg-paper hover:text-ink md:border-transparent"
             }`}
           >
             {item.label}
           </Link>
         ))}
-        <div className="mt-0 px-3 text-xs text-[#7E90B5] md:mt-auto md:border-t md:border-white/10 md:px-6 md:pt-4">
-          <Link href="/dashboard" className="font-bold text-[#B9C7E2] hover:text-white">
+        <div className="mt-0 px-3 text-xs text-muted md:mt-auto md:border-t md:border-line md:px-6 md:pt-4">
+          <Link href="/dashboard" className="font-bold text-ink hover:text-blue">
             🏪 {shopName || "…"} ▾ สลับร้าน
           </Link>
-          <button onClick={logout} className="mt-1 block hover:text-white">
+          <button onClick={logout} className="mt-1 block hover:text-ink">
             ออกจากระบบ
           </button>
         </div>
