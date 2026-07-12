@@ -62,7 +62,17 @@ Base URL: env `NEXT_PUBLIC_API_URL` (dev = http://localhost:3000)
   `invalid_qr`, `provider_unavailable`, `tenant_suspended`
 - ⚠️ Backend ยังไม่เปิด CORS — ต้องไปเพิ่ม `app.enableCors()` ใน main.ts ของ core-api ตอนเชื่อมจริง
 
-## 6. Conventions
+## 6. สถานะปัจจุบัน (อัปเดต 12 ก.ค. 2026)
+
+- ✅ หน้า public ครบ: `/` (landing เต็มตาม mockup), `/pricing`, `/login`, `/register`
+- ✅ **Google OAuth ใช้งานได้จริงแล้ว** — ทดสอบ end-to-end ผ่าน: GIS button → `/auth/social` →
+  JWT → `/dashboard` → สร้างร้านแรก + รับ 20 เครดิต · Client ID อยู่ใน `.env.local`
+  (โปรเจกต์ GCP: `proapp-slipjing`) · Facebook/LINE ยังเป็นปุ่ม disabled "เร็วๆ นี้"
+- ✅ `/dashboard` เริ่มต้น: list ร้าน/สร้างร้าน/สลับร้าน/logout (`src/lib/api.ts` = API client กลาง)
+- ⏳ คิวถัดไป: หน้าบัญชีธนาคาร → API keys → ภาพรวม/ประวัติตรวจ/เติมเครดิต/webhooks ตาม mockup ·
+  หน้า ToS/PDPA (บังคับก่อน launch) · ลิงก์ "เอกสาร API" ยังชี้ #
+
+## 7. Conventions
 
 - commit เป็น conventional commits · push ไป github.com/proappservice (ssh host alias `github-proapp`)
 - อย่า gold-plate — Phase 1 ทำให้ครบตาม mockup ก่อน ความหรูไว้ทีหลัง
