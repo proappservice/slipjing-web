@@ -1,5 +1,8 @@
+import Link from "next/link";
 import { HeroPhone } from "@/components/hero-phone";
-import { Logo, LogoMark } from "@/components/logo";
+import { LogoMark } from "@/components/logo";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 
 const FEATURES = [
   { icon: "🛡️", title: "จับสลิปซ้ำอัตโนมัติ", desc: "สลิปใบเดิมถูกส่งซ้ำเมื่อไหร่ ระบบตอบ duplicate_slip พร้อมอ้างอิงการตรวจครั้งแรกทันที" },
@@ -64,18 +67,7 @@ function StepPictogram({ pic }: { pic: (typeof HOW_IT_WORKS)[number]["pic"] }) {
 export default function LandingPage() {
   return (
     <main>
-      {/* navbar */}
-      <header className="flex items-center gap-6 border-b border-line bg-white px-6 py-4 md:px-10">
-        <Logo size={28} />
-        <nav className="ml-auto flex items-center gap-6 text-sm text-muted">
-          <a href="#" className="hover:text-ink">เอกสาร API</a>
-          <a href="#pricing" className="hover:text-ink">ราคา</a>
-          <a href="#" className="hover:text-ink">เข้าสู่ระบบ</a>
-          <a href="#" className="rounded-lg bg-blue px-4 py-2 text-sm font-bold text-white hover:opacity-90">
-            สมัครฟรี 20 เครดิต
-          </a>
-        </nav>
-      </header>
+      <SiteHeader />
 
       {/* hero + background banner (แสงเรือง, ลายจุด, วงแหวน, เส้นโค้งท้าย — ตาม mockup) */}
       <section
@@ -105,9 +97,9 @@ export default function LandingPage() {
               รูปแบบโกงอันดับหนึ่งของร้านค้าออนไลน์ เริ่มใช้ได้ในไม่กี่นาที
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href="#" className="rounded-lg bg-white px-5 py-2.5 font-bold text-navy hover:opacity-90">
+              <Link href="/register" className="rounded-lg bg-white px-5 py-2.5 font-bold text-navy hover:opacity-90">
                 เริ่มใช้ฟรี — ไม่ต้องผูกบัตร
-              </a>
+              </Link>
               <a href="#" className="rounded-lg border border-[#5F7CB4] px-5 py-2.5 font-bold text-[#DCE6F7] hover:bg-white/10">
                 อ่านเอกสาร API
               </a>
@@ -217,13 +209,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* footer */}
-      <footer className="flex flex-wrap gap-x-6 gap-y-2 border-t border-line bg-white px-6 py-5 text-xs text-muted md:px-10">
-        <span>© 2026 SlipJing</span>
-        <a href="#" className="hover:text-ink">เงื่อนไขการใช้บริการ</a>
-        <a href="#" className="hover:text-ink">นโยบายความเป็นส่วนตัว (PDPA)</a>
-        <span>ติดต่อ: support@slipjing.com</span>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
