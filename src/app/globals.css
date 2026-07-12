@@ -28,3 +28,15 @@ body {
   background: var(--paper);
   color: var(--ink);
 }
+
+/* ป้ายลอยใน hero (ตาม mockup) */
+@keyframes bob {
+  from { transform: translateY(-4px); }
+  to { transform: translateY(5px); }
+}
+.animate-bob {
+  animation: bob 4.5s ease-in-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-bob { animation: none; }
+}

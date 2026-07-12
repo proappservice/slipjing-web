@@ -1,4 +1,5 @@
-import { Logo } from "@/components/logo";
+import { HeroPhone } from "@/components/hero-phone";
+import { Logo, LogoMark } from "@/components/logo";
 
 const FEATURES = [
   { icon: "🛡️", title: "จับสลิปซ้ำอัตโนมัติ", desc: "สลิปใบเดิมถูกส่งซ้ำเมื่อไหร่ ระบบตอบ duplicate_slip พร้อมอ้างอิงการตรวจครั้งแรกทันที" },
@@ -12,6 +13,53 @@ const PACKAGES = [
   { name: "ร้านค้า", price: "฿600", credits: "500 เครดิต", per: "฿1.20/ครั้ง", hot: true },
   { name: "ธุรกิจ", price: "฿2,000", credits: "2,000 เครดิต", per: "฿1.00/ครั้ง", hot: false },
 ];
+
+const HOW_IT_WORKS = [
+  { pic: "slip", title: "1. ส่งสลิปเข้ามา", desc: "ส่งรูปสลิปหรือข้อความ mini-QR ผ่าน API — ระบบถอดรหัสให้เอง" },
+  { pic: "engine", title: "2. ตรวจกับธนาคารต้นทาง", desc: "ยืนยันรายการโอนจริง เช็กยอดเงิน และเช็กว่าสลิปเคยถูกใช้แล้วหรือไม่" },
+  { pic: "check", title: "3. รับผลทันที", desc: "ตอบกลับใน ~1 วินาที พร้อมยิง webhook เข้าระบบหลังร้านของคุณ" },
+] as const;
+
+const CODE_SAMPLE = `POST /v1/verify
+Authorization: Bearer sj_live_••••••••
+Idempotency-Key: ord-10294
+
+{ "payload": "00460006000112…",
+  "expected_amount": 1500.00 }
+
+→ 200 OK
+{ "status": "verified",
+  "checks": { "amount_match": true } }`;
+
+function StepPictogram({ pic }: { pic: (typeof HOW_IT_WORKS)[number]["pic"] }) {
+  if (pic === "slip") {
+    return (
+      <span className="relative block h-[60px] w-[46px] rounded-md border-[2.5px] border-navy bg-white">
+        <span
+          className="absolute left-[7px] right-[7px] top-[9px] h-[22px]"
+          style={{ background: "repeating-linear-gradient(to bottom, var(--line) 0 3px, transparent 3px 9px)" }}
+        />
+        <span
+          className="absolute bottom-[7px] left-[7px] h-[15px] w-[15px] border-[2.5px] border-blue"
+          style={{ background: "linear-gradient(var(--blue), var(--blue)) 50% 50% / 5px 5px no-repeat" }}
+        />
+      </span>
+    );
+  }
+  if (pic === "engine") {
+    return (
+      <span className="relative flex h-[58px] w-[58px] items-center justify-center rounded-full bg-navy">
+        <span className="absolute -inset-[9px] rounded-full border-2 border-dashed border-blue/60" />
+        <LogoMark size={32} onDark />
+      </span>
+    );
+  }
+  return (
+    <span className="flex h-[58px] w-[58px] items-center justify-center rounded-full bg-green text-3xl font-extrabold text-white ring-[9px] ring-green/15">
+      ✓
+    </span>
+  );
+}
 
 export default function LandingPage() {
   return (
@@ -29,9 +77,25 @@ export default function LandingPage() {
         </nav>
       </header>
 
-      {/* hero */}
-      <section className="bg-gradient-to-br from-navy via-[#1D3B72] to-[#23509B] px-6 py-16 text-white md:px-10 md:py-24">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2">
+      {/* hero + background banner (แสงเรือง, ลายจุด, วงแหวน, เส้นโค้งท้าย — ตาม mockup) */}
+      <section
+        className="relative overflow-hidden px-6 pb-28 pt-16 text-white md:px-10 md:pt-20"
+        style={{
+          background: `radial-gradient(640px 340px at 76% 24%, rgba(104,152,235,.38), transparent 65%),
+            radial-gradient(560px 320px at 4% 96%, rgba(64,116,205,.32), transparent 62%),
+            linear-gradient(160deg, #14213D 0%, #1D3B72 70%, #23509B 100%)`,
+        }}
+      >
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.6px) -4px -4px / 26px 26px" }}
+        />
+        <div
+          className="pointer-events-none absolute -right-32 -top-44 h-[520px] w-[520px] rounded-full border border-white/10"
+          style={{ boxShadow: "0 0 0 80px rgba(255,255,255,.045), 0 0 0 180px rgba(255,255,255,.025)" }}
+        />
+
+        <div className="relative z-[1] mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2">
           <div>
             <h1 className="text-3xl font-extrabold leading-snug text-balance md:text-4xl">
               ตรวจสลิปโอนเงินว่า &ldquo;จริงหรือปลอม&rdquo; ก่อนส่งของทุกครั้ง
@@ -49,23 +113,46 @@ export default function LandingPage() {
               </a>
             </div>
           </div>
-          <pre className="overflow-x-auto rounded-xl border border-[#2B3D61] bg-[#0D1526] p-5 text-xs leading-relaxed text-[#C7D5EE]">
-{`POST /v1/verify
-Authorization: Bearer sj_live_••••••••
-Idempotency-Key: ord-10294
+          <HeroPhone />
+        </div>
 
-{ "payload": "00460006000112…",
-  "expected_amount": 1500.00 }
+        {/* เส้นโค้งคั่นท้าย banner */}
+        <div className="absolute -bottom-10 left-[-6%] z-[1] h-[92px] w-[112%] rounded-t-[50%] bg-paper" />
+      </section>
 
-→ 200 OK
-{ "status": "verified",
-  "checks": { "amount_match": true } }`}
-          </pre>
+      {/* แถบร้านค้า — TODO: เปลี่ยนเป็นโลโก้ลูกค้าจริงก่อน launch */}
+      <section className="px-6 pt-7 text-center md:px-10">
+        <p className="text-[11px] font-bold uppercase tracking-widest text-muted">ร้านค้าที่ไว้วางใจ (ตัวอย่าง)</p>
+        <div className="mt-3.5 flex flex-wrap items-baseline justify-center gap-x-9 gap-y-3 text-[#8B95AC]">
+          <span className="text-base font-extrabold">POMTECH</span>
+          <span className="font-serif text-base font-bold italic">เจ๊หมวย Bakery</span>
+          <span className="font-mono text-sm font-extrabold tracking-wider">88MOBILE</span>
+          <span className="text-base font-extrabold">ShopChamp ✦</span>
+          <span className="font-serif text-base font-bold italic">บ้านขนมไทย</span>
+        </div>
+      </section>
+
+      {/* ทำงานอย่างไร */}
+      <section className="mx-auto max-w-4xl px-6 pb-2 pt-12 md:px-10">
+        <h2 className="text-center text-2xl font-extrabold">ทำงานอย่างไร</h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+          {HOW_IT_WORKS.map((s, i) => (
+            <div key={s.title} className="relative rounded-xl border border-line bg-white p-6 text-center">
+              {i > 0 && (
+                <span className="absolute -left-4 top-1/2 hidden -translate-y-1/2 text-lg text-muted sm:block">→</span>
+              )}
+              <div className="mb-3 flex h-[74px] items-center justify-center">
+                <StepPictogram pic={s.pic} />
+              </div>
+              <h3 className="text-[15px] font-bold">{s.title}</h3>
+              <p className="mt-1 text-[13px] text-muted">{s.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* features */}
-      <section className="mx-auto grid max-w-6xl gap-4 px-6 py-14 sm:grid-cols-2 lg:grid-cols-4 md:px-10">
+      <section className="mx-auto grid max-w-6xl gap-4 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4 md:px-10">
         {FEATURES.map((f) => (
           <article key={f.title} className="rounded-xl border border-line bg-white p-6">
             <h3 className="font-bold">{f.icon} {f.title}</h3>
@@ -74,8 +161,33 @@ Idempotency-Key: ord-10294
         ))}
       </section>
 
+      {/* สร้างมาเพื่อนักพัฒนา */}
+      <section className="border-y border-line bg-white px-6 py-12 md:px-10">
+        <div className="mx-auto grid max-w-5xl items-center gap-9 md:grid-cols-[1fr_1.15fr]">
+          <div>
+            <h2 className="text-2xl font-extrabold">สร้างมาเพื่อนักพัฒนา</h2>
+            <ul className="mt-4 space-y-2.5 text-sm text-muted">
+              {[
+                "REST API เดียว รองรับทั้งข้อความ QR และรูปสลิป",
+                "Idempotency-Key กันยิงซ้ำ — ไม่มีการหักเครดิตสองครั้ง",
+                "ตรวจยอดเงิน/บัญชีผู้รับที่คาดหวังได้ในคำขอเดียว",
+                "error code อ่านได้ด้วยเครื่อง พร้อมเอกสารภาษาไทย",
+              ].map((li) => (
+                <li key={li}>
+                  <span className="mr-2 font-extrabold text-green">✓</span>
+                  {li}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <pre className="overflow-x-auto rounded-xl border border-[#2B3D61] bg-[#0D1526] p-5 text-xs leading-relaxed text-[#C7D5EE]">
+            {CODE_SAMPLE}
+          </pre>
+        </div>
+      </section>
+
       {/* pricing */}
-      <section id="pricing" className="px-6 pb-16 md:px-10">
+      <section id="pricing" className="px-6 py-14 md:px-10">
         <h2 className="text-center text-2xl font-extrabold">แพ็กเกจเครดิต</h2>
         <p className="mt-1 text-center text-sm text-muted">
           1 เครดิต = ตรวจสลิป 1 ครั้ง · เติมผ่าน PromptPay · เครดิตไม่มีวันหมดอายุ (ราคาตัวอย่าง)
