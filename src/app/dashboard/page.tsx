@@ -57,7 +57,8 @@ export default function DashboardPage() {
       });
       session.selectShop(created.id);
       setNewShopName("");
-      await loadShops();
+      // onboarding ตามสเปก: สร้างร้านแล้ว → เพิ่มบัญชีธนาคารทันที
+      router.push("/dashboard/bank-accounts");
     } catch (err) {
       setError(err instanceof Error ? err.message : "สร้างร้านไม่สำเร็จ");
     } finally {
@@ -115,7 +116,8 @@ export default function DashboardPage() {
                   key={s.id}
                   onClick={() => {
                     session.selectShop(s.id);
-                    // TODO: ไปหน้าภาพรวมของร้าน (ยังไม่ได้สร้าง) — ตอนนี้ highlight ร้านที่เลือก
+                    // หน้าแรกของร้าน = บัญชีธนาคาร (ขั้นต่อไปของ onboarding) จนกว่าจะมีหน้าภาพรวม
+                    router.push("/dashboard/bank-accounts");
                   }}
                   className={`flex w-full items-center gap-3 rounded-xl border bg-white p-5 text-left hover:border-blue ${session.shopId() === s.id ? "border-blue" : "border-line"}`}
                 >

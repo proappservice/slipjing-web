@@ -69,7 +69,10 @@ Base URL: env `NEXT_PUBLIC_API_URL` (dev = http://localhost:3000)
   JWT → `/dashboard` → สร้างร้านแรก + รับ 20 เครดิต · Client ID อยู่ใน `.env.local`
   (โปรเจกต์ GCP: `proapp-slipjing`) · Facebook/LINE ยังเป็นปุ่ม disabled "เร็วๆ นี้"
 - ✅ `/dashboard` เริ่มต้น: list ร้าน/สร้างร้าน/สลับร้าน/logout (`src/lib/api.ts` = API client กลาง)
-- ⏳ คิวถัดไป: หน้าบัญชีธนาคาร → API keys → ภาพรวม/ประวัติตรวจ/เติมเครดิต/webhooks ตาม mockup ·
+- ✅ `/dashboard/bank-accounts`: เพิ่ม/ลบ/ดูบัญชีธนาคารของร้าน — ใช้ `DashboardShell`
+  (sidebar ตาม mockup, เมนูที่ยังไม่ทำติด "เร็วๆ นี้") · flow: สร้างร้าน/เลือกร้าน → เข้าหน้านี้ทันที ·
+  ทดสอบ API จริงแล้วรวม cross-tenant 403 · รายชื่อธนาคาร+รหัส BOT อยู่ `src/lib/banks.ts`
+- ⏳ คิวถัดไป: API keys → ภาพรวม/ประวัติตรวจ/เติมเครดิต/webhooks ตาม mockup ·
   หน้า ToS/PDPA (บังคับก่อน launch) · ลิงก์ "เอกสาร API" ยังชี้ #
 
 ## 7. Conventions
