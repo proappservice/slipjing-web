@@ -73,9 +73,14 @@ Base URL: env `NEXT_PUBLIC_API_URL` (dev = http://localhost:3000)
   (sidebar ตาม mockup, เมนูที่ยังไม่ทำติด "เร็วๆ นี้") · flow: สร้างร้าน/เลือกร้าน → เข้าหน้านี้ทันที ·
   ทดสอบ API จริงแล้วรวม cross-tenant 403 · รายชื่อธนาคาร+รหัส BOT อยู่ `src/lib/banks.ts`
 - ✅ `/dashboard/api-keys`: สร้าง (live/test) + banner แสดง key เต็มครั้งเดียว+คัดลอก + rotate + เพิกถอน
-  — ทดสอบ endpoints จริงครบ (backend fix: rotate ตอบ envelope เดียวกับ create แล้ว)
-- ⏳ คิวถัดไป: ภาพรวม/ประวัติตรวจ/เติมเครดิต/webhooks ตาม mockup ·
-  หน้า ToS/PDPA (บังคับก่อน launch) · ลิงก์ "เอกสาร API" ยังชี้ #
+- ✅ **dashboard ครบ 6 หน้าแล้ว**: overview (tiles+กราฟ 7 วัน+ล่าสุด), verifications (filter สถานะ
+  + pill เช็คยอด/ผู้รับ), topup (แพ็กเกจ+ประวัติ — จ่ายจริงยังเป็น manual รอ PromptPay QR),
+  webhooks (CRUD + secret ครั้งเดียว) · เข้าร้านแล้ว land ที่ overview ·
+  backend มี endpoints shop-scoped: /shops/credits/balance, /shops/verifications(+/usage)
+- ✅ ตรวจสลิปจริงผ่านแล้วครบทุกเคส (verified/duplicate/fraud) — receiver matching รองรับ
+  คำนำหน้าชื่อ+นามสกุลย่อจากธนาคาร (src backend: verification/receiver-match.ts)
+- ⏳ คิวถัดไป: PromptPay QR + อัปโหลดสลิปในหน้า topup (dogfooding) · หน้า ToS/PDPA (บังคับก่อน
+  launch) · เอกสาร API สำหรับลูกค้า · Facebook/LINE login · deploy
 
 ## 7. Conventions
 

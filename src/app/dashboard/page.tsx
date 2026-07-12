@@ -116,8 +116,7 @@ export default function DashboardPage() {
                   key={s.id}
                   onClick={() => {
                     session.selectShop(s.id);
-                    // หน้าแรกของร้าน = บัญชีธนาคาร (ขั้นต่อไปของ onboarding) จนกว่าจะมีหน้าภาพรวม
-                    router.push("/dashboard/bank-accounts");
+                    router.push("/dashboard/overview");
                   }}
                   className={`flex w-full items-center gap-3 rounded-xl border bg-white p-5 text-left hover:border-blue ${session.shopId() === s.id ? "border-blue" : "border-line"}`}
                 >
