@@ -35,6 +35,8 @@ NestJS ตอบ JSON อย่างเดียว สเปกธุรกิ
 - Mockup ที่ approve แล้วครบ 10 หน้าจอ (landing พร้อมภาพประกอบ+background banner, pricing,
   login/register แยกหน้า, dashboard 5 หน้า, admin): artifact
   https://claude.ai/code/artifact/561c2b01-0ecb-49a1-a8a8-8b7f25210933 — ใช้เป็น reference การ implement
+- **ยกเว้น sidebar ของ dashboard**: เจ้าของเปลี่ยนจาก mockup (กรมท่า) เป็น **โทนอ่อนแบบ A**
+  (พื้นขาว + เส้นคั่น + active น้ำเงิน) เมื่อ 12 ก.ค. 2026 เพราะพื้นเข้มอ่านยาก — ห้ามกลับไปพื้นเข้ม
 
 ## 4. กติกาธุรกิจที่ frontend ต้องรู้
 
