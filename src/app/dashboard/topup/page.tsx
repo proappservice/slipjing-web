@@ -31,6 +31,7 @@ export default function TopupPage() {
   const [packages, setPackages] = useState<CreditPackage[] | null>(null);
   const [orders, setOrders] = useState<TopupOrder[] | null>(null);
   const [createdOrder, setCreatedOrder] = useState<TopupOrder | null>(null);
+  const [confirming, setConfirming] = useState<CreditPackage | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -51,16 +52,18 @@ export default function TopupPage() {
     void load();
   }, [load]);
 
-  async function order(pkg: CreditPackage) {
+  async function confirmOrder() {
+    if (!confirming) return;
     setBusy(true);
     setError(null);
     try {
       const created = await api<TopupOrder>("/shops/topup/orders", {
         method: "POST",
         shopScoped: true,
-        body: { package_id: pkg.id },
+        body: { package_id: confirming.id },
       });
       setCreatedOrder(created);
+      setConfirming(null);
       await load();
     } catch (err) {
       setError(err instanceof Error ? err.message : "สร้างคำสั่งซื้อไม่สำเร็จ");
@@ -102,7 +105,7 @@ export default function TopupPage() {
                 {Number(p.credits).toLocaleString()} เครดิต · ฿{(Number(p.price_thb) / Number(p.credits)).toFixed(2)}/ครั้ง
               </p>
               <button
-                onClick={() => order(p)}
+                onClick={() => setConfirming(p)}
                 disabled={busy}
                 className={`mt-4 rounded-lg px-5 py-2 text-sm font-bold disabled:opacity-50 ${i === 1 ? "bg-blue text-white" : "border border-line hover:border-blue"}`}
               >
@@ -149,6 +152,42 @@ export default function TopupPage() {
           </tbody>
         </table>
       </div>
+
+      {/* modal ยืนยันก่อนสร้างคำสั่งซื้อ — กันเผลอกดแล้วเกิด order ทันที */}
+      {confirming && (
+        <div
+          className="fixed inset-0 z-50 grid place-items-center bg-navy/50 px-4"
+          onClick={() => !busy && setConfirming(null)}
+        >
+          <div className="w-full max-w-sm rounded-2xl bg-white p-7" onClick={(e) => e.stopPropagation()}>
+            <h2 className="text-lg font-extrabold">ยืนยันการสั่งซื้อ</h2>
+            <div className="mt-4 space-y-2 rounded-xl bg-paper px-5 py-4 text-sm">
+              <div className="flex justify-between"><span className="text-muted">แพ็กเกจ</span><b>{confirming.name}</b></div>
+              <div className="flex justify-between"><span className="text-muted">เครดิตที่จะได้รับ</span><b className="tabular-nums">{Number(confirming.credits).toLocaleString()} เครดิต</b></div>
+              <div className="flex justify-between border-t border-line pt-2"><span className="text-muted">ยอดชำระ</span><b className="text-lg text-navy tabular-nums">฿{Number(confirming.price_thb).toLocaleString()}</b></div>
+            </div>
+            <p className="mt-3 text-xs text-muted">
+              หลังยืนยัน ระบบจะสร้างเลขคำสั่งซื้อสำหรับการโอนเงิน — ยังไม่มีการตัดเงินใดๆ จนกว่าจะโอนจริง
+            </p>
+            <div className="mt-5 flex gap-2">
+              <button
+                onClick={() => setConfirming(null)}
+                disabled={busy}
+                className="flex-1 rounded-lg border border-line py-2.5 text-sm font-bold hover:border-blue"
+              >
+                ยกเลิก
+              </button>
+              <button
+                onClick={confirmOrder}
+                disabled={busy}
+                className="flex-1 rounded-lg bg-blue py-2.5 text-sm font-bold text-white disabled:opacity-50"
+              >
+                {busy ? "กำลังสร้าง…" : "ยืนยันสั่งซื้อ"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </DashboardShell>
   );
 }
