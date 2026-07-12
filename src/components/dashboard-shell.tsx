@@ -42,7 +42,8 @@ export function DashboardShell({ active, children }: { active: string; children:
   return (
     <div className="grid min-h-screen md:grid-cols-[216px_1fr]">
       <aside className="flex flex-row flex-wrap items-center gap-1 bg-navy px-3 py-3 text-[#B9C7E2] md:flex-col md:items-stretch md:gap-0 md:px-0 md:py-5">
-        <Link href="/" className="px-3 pb-0 md:px-6 md:pb-4">
+        {/* โลโก้ใน dashboard พากลับหน้ารายการร้าน ไม่ใช่ออกไปหน้าเว็บ */}
+        <Link href="/dashboard" className="px-3 pb-0 md:px-6 md:pb-4">
           <Logo size={24} onDark />
         </Link>
         {NAV.map((item) => (

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthNav } from "./auth-nav";
 import { Logo } from "./logo";
 
 export function SiteHeader({ active }: { active?: "pricing" | "docs" }) {
@@ -12,10 +13,7 @@ export function SiteHeader({ active }: { active?: "pricing" | "docs" }) {
         <Link href="/pricing" className={active === "pricing" ? "font-bold text-blue" : "hover:text-ink"}>
           ราคา
         </Link>
-        <Link href="/login" className="hover:text-ink">เข้าสู่ระบบ</Link>
-        <Link href="/register" className="rounded-lg bg-blue px-4 py-2 text-sm font-bold text-white hover:opacity-90">
-          สมัครฟรี 20 เครดิต
-        </Link>
+        <AuthNav />
       </nav>
     </header>
   );

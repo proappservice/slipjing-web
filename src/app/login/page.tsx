@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Logo } from "@/components/logo";
+import { RedirectIfAuthed } from "@/components/redirect-if-authed";
 import { SocialLoginRows } from "@/components/social-login";
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export default function LoginPage() {
       className="grid min-h-screen place-items-center px-5 py-10"
       style={{ background: "radial-gradient(700px 380px at 50% -80px, #E7EEFA, var(--paper))" }}
     >
+      <RedirectIfAuthed />
       <div className="w-full max-w-[400px] rounded-2xl border border-line bg-white p-8 shadow-[0_10px_30px_rgba(10,20,40,.07)]">
         <div className="flex justify-center">
           <Link href="/" aria-label="กลับหน้าแรก SlipJing">
