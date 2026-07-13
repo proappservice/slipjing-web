@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72">
+  <g transform="translate(4,4) scale(1)">
+  <polygon points="8,34 20,22 32,34 32,52 20,40" fill="#6D9BE8"/>
+  <polygon points="32,52 32,34 50,16 62,16 62,22" fill="#FFFFFF"/>
+  <polygon points="32,34 32,52 26,46" fill="#3E5C94" opacity=".8"/></g>
+  <text x="76" y="47" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="34"
+    fill="#FFFFFF">Slip<tspan fill="#6D9BE8">Jing</tspan></text>
+</svg>
