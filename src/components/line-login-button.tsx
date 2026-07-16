@@ -1,6 +1,6 @@
 "use client";
 
-import { LineIcon } from "./brand-icons";
+import { LineAppIcon } from "./brand-icons";
 
 const LINE_CHANNEL_ID = process.env.NEXT_PUBLIC_LINE_CHANNEL_ID;
 
@@ -21,7 +21,7 @@ export function startLineLogin() {
 export function LineLoginButton({ variant, mode = "login" }: { variant: "row" | "tile"; mode?: "login" | "register" }) {
   const configured = Boolean(LINE_CHANNEL_ID);
 
-  /* ปุ่มตามสเปกทางการของ LINE: พื้น #06C755 + ไอคอน/ตัวหนังสือขาว */
+  /* พื้นขาวเหมือนปุ่ม Google/Facebook + ไอคอนแบบแอป LINE (เขียว) ที่คมชัด */
   if (variant === "tile") {
     return (
       <button
@@ -29,13 +29,13 @@ export function LineLoginButton({ variant, mode = "login" }: { variant: "row" | 
         onClick={configured ? startLineLogin : undefined}
         disabled={!configured}
         title={configured ? undefined : "ยังไม่ได้ตั้งค่า NEXT_PUBLIC_LINE_CHANNEL_ID"}
-        className={`flex flex-col items-center gap-2 rounded-xl px-2 py-4 text-[13px] font-bold text-white shadow-sm ${
-          configured ? "bg-[#06C755] hover:bg-[#05B34C]" : "cursor-not-allowed bg-[#06C755]/50"
+        className={`flex flex-col items-center gap-2.5 rounded-xl border bg-white px-2 py-4 text-[13px] font-bold shadow-sm ${
+          configured ? "border-line hover:border-blue" : "cursor-not-allowed border-dashed border-line opacity-60"
         }`}
       >
-        <LineIcon size={36} color="#FFFFFF" />
+        <LineAppIcon size={36} />
         LINE
-        {!configured && <span className="text-[10px] font-bold">เร็วๆ นี้</span>}
+        {!configured && <span className="text-[10px] font-bold text-muted">เร็วๆ นี้</span>}
       </button>
     );
   }
@@ -46,16 +46,16 @@ export function LineLoginButton({ variant, mode = "login" }: { variant: "row" | 
       onClick={configured ? startLineLogin : undefined}
       disabled={!configured}
       title={configured ? undefined : "ยังไม่ได้ตั้งค่า NEXT_PUBLIC_LINE_CHANNEL_ID"}
-      className={`relative flex w-full items-center justify-center rounded-lg px-4 py-2.5 text-sm font-bold text-white ${
-        configured ? "bg-[#06C755] hover:bg-[#05B34C]" : "cursor-not-allowed bg-[#06C755]/50"
+      className={`relative flex w-full items-center justify-center rounded-lg border bg-white px-4 py-2.5 text-sm font-bold ${
+        configured ? "border-line hover:border-blue" : "cursor-not-allowed border-line opacity-60"
       }`}
     >
       <span className="absolute left-3.5">
-        <LineIcon size={24} color="#FFFFFF" />
+        <LineAppIcon size={24} />
       </span>
       {mode === "login" ? "เข้าสู่ระบบ" : "สมัคร"}ด้วย LINE
       {!configured && (
-        <span className="absolute right-3 rounded-full bg-white/25 px-2 py-0.5 text-[10px] font-bold">เร็วๆ นี้</span>
+        <span className="absolute right-3 rounded-full bg-paper px-2 py-0.5 text-[10px] font-bold text-muted">เร็วๆ นี้</span>
       )}
     </button>
   );
