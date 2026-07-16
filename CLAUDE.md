@@ -69,7 +69,7 @@ Base URL: env `NEXT_PUBLIC_API_URL` (dev = http://localhost:3000)
 - ✅ หน้า public ครบ: `/` (landing เต็มตาม mockup), `/pricing`, `/login`, `/register`
 - ✅ **Google OAuth ใช้งานได้จริงแล้ว** — ทดสอบ end-to-end ผ่าน: GIS button → `/auth/social` →
   JWT → `/dashboard` → สร้างร้านแรก + รับ 20 เครดิต · Client ID อยู่ใน `.env.local`
-  (โปรเจกต์ GCP: `proapp-slipjing`) · Facebook/LINE ยังเป็นปุ่ม disabled "เร็วๆ นี้"
+  (โปรเจกต์ GCP: `proapp-slipjing`) · LINE Login โค้ดพร้อมแล้ว (ปุ่ม+/auth/line/callback+backend /auth/line) รอใส่ NEXT_PUBLIC_LINE_CHANNEL_ID และ LINE_CHANNEL_ID/SECRET ฝั่ง backend · Facebook ยัง disabled
 - ✅ `/dashboard` เริ่มต้น: list ร้าน/สร้างร้าน/สลับร้าน/logout (`src/lib/api.ts` = API client กลาง)
 - ✅ `/dashboard/bank-accounts`: เพิ่ม/ลบ/ดูบัญชีธนาคารของร้าน — ใช้ `DashboardShell`
   (sidebar ตาม mockup, เมนูที่ยังไม่ทำติด "เร็วๆ นี้") · flow: สร้างร้าน/เลือกร้าน → เข้าหน้านี้ทันที ·
