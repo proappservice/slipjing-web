@@ -89,10 +89,11 @@ export function DashboardShell({ active, children }: { active: string; children:
 
         {SECTIONS.map((section) => (
           <div key={section.title} className="contents md:block">
-            <p className="hidden px-6 pb-1 pt-4 text-[11px] font-extrabold uppercase tracking-wider text-muted md:block">
+            {/* หัวหมวด: font/ขนาดเดียวกับเมนูย่อย แต่หนา (ตาม feedback เจ้าของ 16 ก.ค.) */}
+            <p className="hidden px-6 pb-1 pt-4 text-sm font-bold text-ink md:block">
               {section.title}
               {section.showBalance && balance !== null && (
-                <span className="ml-1.5 font-bold normal-case text-green">({Number(balance).toLocaleString()} เครดิต)</span>
+                <span className="ml-1.5 text-sm font-bold text-green">({Number(balance).toLocaleString()} เครดิต)</span>
               )}
             </p>
             {section.items.map((item) =>
