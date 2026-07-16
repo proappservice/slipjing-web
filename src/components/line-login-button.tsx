@@ -51,7 +51,7 @@ export function LineLoginButton({ variant, mode = "login" }: { variant: "row" | 
       onClick={configured ? startLineLogin : undefined}
       disabled={!configured}
       title={configured ? undefined : "ยังไม่ได้ตั้งค่า NEXT_PUBLIC_LINE_CHANNEL_ID"}
-      className={`relative flex w-full items-center justify-center rounded-lg border bg-white px-4 py-2.5 text-sm font-bold ${
+      className={`relative flex w-full items-center justify-center rounded-lg border bg-white px-4 py-2.5 text-sm ${
         configured ? "border-line hover:border-blue" : "cursor-not-allowed border-line opacity-60"
       }`}
     >
