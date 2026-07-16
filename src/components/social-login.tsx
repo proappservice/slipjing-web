@@ -17,11 +17,13 @@ export function SocialLoginRows({ mode = "login" }: { mode?: "login" | "register
         type="button"
         disabled
         title="กำลังตั้งค่า — เร็วๆ นี้"
-        className="flex w-full cursor-not-allowed items-center justify-center gap-2.5 rounded-lg border border-line bg-white px-4 py-2.5 text-sm font-bold opacity-60"
+        className="relative flex w-full cursor-not-allowed items-center justify-center rounded-lg border border-line bg-white px-4 py-2.5 text-sm font-bold opacity-60"
       >
-        <FacebookIcon size={20} />
+        <span className="absolute left-3.5">
+          <FacebookIcon size={24} />
+        </span>
         {mode === "login" ? "เข้าสู่ระบบ" : "สมัคร"}ด้วย Facebook
-        <span className="ml-auto rounded-full bg-paper px-2 py-0.5 text-[10px] font-bold text-muted">เร็วๆ นี้</span>
+        <span className="absolute right-3 rounded-full bg-paper px-2 py-0.5 text-[10px] font-bold text-muted">เร็วๆ นี้</span>
       </button>
     </div>
   );
@@ -40,7 +42,7 @@ export function SocialLoginGrid({ mode = "register" }: { mode?: "login" | "regis
           title="กำลังตั้งค่า — เร็วๆ นี้"
           className="flex cursor-not-allowed flex-col items-center gap-2.5 rounded-xl border border-dashed border-line bg-white px-2 py-4 text-[13px] font-bold opacity-60"
         >
-          <FacebookIcon size={34} />
+          <FacebookIcon size={36} />
           Facebook
           <span className="text-[10px] font-bold text-muted">เร็วๆ นี้</span>
         </button>
