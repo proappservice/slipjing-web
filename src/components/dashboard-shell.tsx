@@ -87,6 +87,21 @@ export function DashboardShell({ active, children }: { active: string; children:
           <Logo size={24} />
         </Link>
 
+        {/* การ์ดร้านปัจจุบัน (บนสุดแบบ slip2go — เจ้าของสั่ง 16 ก.ค.) */}
+        <div className="hidden md:mx-4 md:mb-1 md:block md:rounded-xl md:border md:border-line md:bg-paper md:px-4 md:py-3">
+          <p className="text-sm font-bold text-ink">🏪 {shopName || "…"}</p>
+          <p className="mt-1 flex items-baseline gap-1.5 text-xs text-muted">
+            เครดิตคงเหลือ
+            <span className="text-lg font-extrabold text-green tabular-nums">
+              {balance === null ? "…" : Number(balance).toLocaleString()}
+            </span>
+          </p>
+          <p className="mt-1.5 flex gap-3 text-xs">
+            <Link href="/dashboard" className="font-bold text-blue hover:underline">⇄ เปลี่ยนร้าน</Link>
+            <button onClick={logout} className="text-muted hover:text-ink">ออกจากระบบ</button>
+          </p>
+        </div>
+
         {SECTIONS.map((section) => (
           <div key={section.title} className="contents md:block">
             {/* หัวหมวด: font/ขนาดเดียวกับเมนูย่อย แต่หนา (ตาม feedback เจ้าของ 16 ก.ค.) */}
@@ -123,13 +138,11 @@ export function DashboardShell({ active, children }: { active: string; children:
           </div>
         ))}
 
-        <div className="mt-0 px-3 text-xs text-muted md:mt-auto md:border-t md:border-line md:px-6 md:pt-4">
-          <Link href="/dashboard" className="font-bold text-ink hover:text-blue">
-            🏪 {shopName || "…"} ▾ สลับร้าน
-          </Link>
-          <button onClick={logout} className="mt-1 block hover:text-ink">
-            ออกจากระบบ
-          </button>
+        {/* มุมมองจอเล็ก (sidebar แบบแถวบน): ชื่อร้าน + สลับร้าน/ออกจากระบบ */}
+        <div className="ml-auto flex items-center gap-3 px-3 text-xs text-muted md:hidden">
+          <span className="font-bold text-ink">🏪 {shopName || "…"}</span>
+          <Link href="/dashboard" className="font-bold text-blue">เปลี่ยนร้าน</Link>
+          <button onClick={logout}>ออกจากระบบ</button>
         </div>
       </aside>
       <main className="px-6 py-7 md:px-9">{children}</main>
