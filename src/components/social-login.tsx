@@ -17,7 +17,7 @@ export function SocialLoginRows({ mode = "login" }: { mode?: "login" | "register
         type="button"
         disabled
         title="กำลังตั้งค่า — เร็วๆ นี้"
-        className="relative flex w-full cursor-not-allowed items-center justify-center rounded-lg border border-line bg-white px-4 py-2.5 text-sm font-bold opacity-60"
+        className="relative flex w-full cursor-not-allowed items-center justify-center rounded-lg border border-line bg-white px-4 py-2.5 text-sm font-bold opacity-60 hover:bg-blue/10"
       >
         <span className="absolute left-3">
           <FacebookIcon size={20} />

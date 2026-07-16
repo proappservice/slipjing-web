@@ -34,7 +34,7 @@ export function LineLoginButton({ mode = "login" }: { mode?: "login" | "register
       disabled={!configured}
       title={configured ? undefined : "ยังไม่ได้ตั้งค่า NEXT_PUBLIC_LINE_CHANNEL_ID"}
       className={`relative flex w-full items-center justify-center rounded-lg border bg-white px-4 py-2.5 text-sm ${
-        configured ? "border-line hover:border-blue" : "cursor-not-allowed border-line opacity-60"
+        configured ? "border-line hover:bg-blue/10" : "cursor-not-allowed border-line opacity-60"
       }`}
     >
       <span className="absolute left-3">
