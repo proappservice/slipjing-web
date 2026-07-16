@@ -1,6 +1,11 @@
 "use client";
 
-import { LineAppIcon } from "./brand-icons";
+import Image from "next/image";
+
+/** โลโก้แอป LINE ทางการ (PNG 240px จากไฟล์ต้นฉบับ — แสดงย่อจึงคมระดับ retina) */
+function LineAppIcon({ size = 30 }: { size?: number }) {
+  return <Image src="/icons/line.png" width={size} height={size} alt="" className="rounded-md" />;
+}
 
 const LINE_CHANNEL_ID = process.env.NEXT_PUBLIC_LINE_CHANNEL_ID;
 
