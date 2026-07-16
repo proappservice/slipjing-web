@@ -23,27 +23,9 @@ export function startLineLogin() {
   window.location.href = `https://access.line.me/oauth2/v2.1/authorize?${params}`;
 }
 
-export function LineLoginButton({ variant, mode = "login" }: { variant: "row" | "tile"; mode?: "login" | "register" }) {
+/* พื้นขาวเหมือนปุ่ม Google/Facebook + ไอคอนแอป LINE ทางการที่คมชัด */
+export function LineLoginButton({ mode = "login" }: { mode?: "login" | "register" }) {
   const configured = Boolean(LINE_CHANNEL_ID);
-
-  /* พื้นขาวเหมือนปุ่ม Google/Facebook + ไอคอนแบบแอป LINE (เขียว) ที่คมชัด */
-  if (variant === "tile") {
-    return (
-      <button
-        type="button"
-        onClick={configured ? startLineLogin : undefined}
-        disabled={!configured}
-        title={configured ? undefined : "ยังไม่ได้ตั้งค่า NEXT_PUBLIC_LINE_CHANNEL_ID"}
-        className={`flex flex-col items-center gap-2.5 rounded-xl border bg-white px-2 py-4 text-[13px] font-bold shadow-sm ${
-          configured ? "border-line hover:border-blue" : "cursor-not-allowed border-dashed border-line opacity-60"
-        }`}
-      >
-        <LineAppIcon size={44} />
-        LINE
-        {!configured && <span className="text-[10px] font-bold text-muted">เร็วๆ นี้</span>}
-      </button>
-    );
-  }
 
   return (
     <button

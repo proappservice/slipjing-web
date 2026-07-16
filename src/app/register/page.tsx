@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { RedirectIfAuthed } from "@/components/redirect-if-authed";
-import { SocialLoginGrid } from "@/components/social-login";
+import { SocialLoginRows } from "@/components/social-login";
 
 export const metadata: Metadata = {
   title: "สมัครสมาชิก — SlipJing รับฟรี 20 เครดิต",
@@ -27,7 +27,7 @@ export default function RegisterPage() {
           เลือกช่องทางที่สะดวก — ไม่ต้องตั้งรหัสผ่าน
         </p>
 
-        <SocialLoginGrid />
+        <SocialLoginRows mode="register" />
 
         <div className="mt-4 rounded-lg bg-green/10 px-4 py-2 text-center text-xs font-bold text-green">
           🎁 รับฟรี 20 เครดิตเมื่อสร้างร้านแรก — ไม่ต้องผูกบัตร

@@ -12,7 +12,7 @@ export function SocialLoginRows({ mode = "login" }: { mode?: "login" | "register
   return (
     <div className="space-y-2.5">
       <GoogleLoginButton mode={mode} />
-      <LineLoginButton variant="row" mode={mode} />
+      <LineLoginButton mode={mode} />
       <button
         type="button"
         disabled
@@ -29,24 +29,3 @@ export function SocialLoginRows({ mode = "login" }: { mode?: "login" | "register
   );
 }
 
-/** แบบตาราง — หน้าสมัครสมาชิก (Google เต็มแถวบน + LINE/FB เป็นช่อง) */
-export function SocialLoginGrid({ mode = "register" }: { mode?: "login" | "register" }) {
-  return (
-    <div className="space-y-3">
-      <GoogleLoginButton mode={mode} />
-      <div className="grid grid-cols-2 gap-3">
-        <LineLoginButton variant="tile" mode={mode} />
-        <button
-          type="button"
-          disabled
-          title="กำลังตั้งค่า — เร็วๆ นี้"
-          className="flex cursor-not-allowed flex-col items-center gap-2.5 rounded-xl border border-dashed border-line bg-white px-2 py-4 text-[13px] font-bold opacity-60"
-        >
-          <FacebookIcon size={36} />
-          Facebook
-          <span className="text-[10px] font-bold text-muted">เร็วๆ นี้</span>
-        </button>
-      </div>
-    </div>
-  );
-}
