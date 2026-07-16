@@ -28,7 +28,7 @@ export const session = {
 
 export async function api<T>(
   path: string,
-  opts: { method?: string; body?: unknown; shopScoped?: boolean } = {},
+  opts: { method?: string; body?: unknown; shopScoped?: boolean; idempotencyKey?: string } = {},
 ): Promise<T> {
   const headers: Record<string, string> = { "content-type": "application/json" };
   const token = session.token();
@@ -37,6 +37,7 @@ export async function api<T>(
     const shopId = session.shopId();
     if (shopId) headers["x-shop-id"] = shopId;
   }
+  if (opts.idempotencyKey) headers["idempotency-key"] = opts.idempotencyKey;
 
   const res = await fetch(`${API_URL}${path}`, {
     method: opts.method ?? "GET",

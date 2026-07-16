@@ -8,6 +8,7 @@ import { Logo } from "./logo";
 
 const NAV = [
   { key: "overview", label: "📊 ภาพรวม", href: "/dashboard/overview" },
+  { key: "verify", label: "🔍 ตรวจสลิป", href: "/dashboard/verify" },
   { key: "bank-accounts", label: "🏦 บัญชีธนาคาร", href: "/dashboard/bank-accounts" },
   { key: "api-keys", label: "🔑 API Keys", href: "/dashboard/api-keys" },
   { key: "topup", label: "💳 เติมเครดิต", href: "/dashboard/topup" },
