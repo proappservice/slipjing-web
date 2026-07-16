@@ -55,8 +55,8 @@ export function LineLoginButton({ variant, mode = "login" }: { variant: "row" | 
         configured ? "border-line hover:border-blue" : "cursor-not-allowed border-line opacity-60"
       }`}
     >
-      <span className="absolute left-3.5">
-        <LineAppIcon size={30} />
+      <span className="absolute left-3">
+        <LineAppIcon size={20} />
       </span>
       {mode === "login" ? "เข้าสู่ระบบ" : "สมัคร"}ด้วย LINE
       {!configured && (
